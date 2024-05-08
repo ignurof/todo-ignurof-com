@@ -2,13 +2,40 @@
 <html lang='en-US'>
     <head>
         <meta charset='utf-8'>
-        
+
         <title>todo.ignurof.com</title>
 
         {% load static %}
         <link href='{% static "todo/style.css" %}' rel='stylesheet'>
     </head>
     <body>
-        <h1>Todo App</h1>         
+        <header>
+            <h1>Todo App</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Tasks</h2>
+                {% if tasks %}
+                {% for task in tasks %}
+                <ul>
+                    <li><h3>{{task.title}}</h3><p>{{task.text}}</p></li>
+                </ul>
+                {% endfor %}
+                {% else %}
+                <p>No tasks made.</p>
+                {% endif %}
+            </section>
+
+            <section>
+                <form action='{% url "todo:index" %}' method='POST'>
+                    {% csrf_token %}
+                    <label for='title'>Title:</label>
+                    <input type='text' name='title' id='title'>
+                    <label for='text'>Text:</label>
+                    <input type='text' name='text' id='text'>
+                    <input type='submit' value='Create Task'>
+                </form>
+            </section>
+        </main>
     </body>
 </html>
