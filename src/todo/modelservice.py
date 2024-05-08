@@ -9,5 +9,9 @@ class TaskService():
         task = Task(title=title, text=text)
         task.save()
 
+    def delete_task(self, id):
+        task = Task.objects.get(id=id)
+        task.delete()
+
     def order_by_descending(self):
         return Task.objects.order_by('-id')

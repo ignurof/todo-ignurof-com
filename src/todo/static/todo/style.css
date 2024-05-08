@@ -9,3 +9,19 @@ body {
     background-color: lightblue;
     color: black;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+header > h1 {
+    width: 100%;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+section > h2 {
+    text-align: center;
+    padding: 1rem 0;
+}

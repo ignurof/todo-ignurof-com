@@ -28,3 +28,8 @@ def post(request):
             TaskService().create_task(title, text)
 
         return HttpResponseRedirect(reverse('todo:index'))
+
+
+def delete(request, id):
+    TaskService().delete_task(id)
+    return HttpResponseRedirect(reverse('todo:index'))

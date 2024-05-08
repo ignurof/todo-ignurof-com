@@ -13,12 +13,12 @@
             <h1>Todo App</h1>
         </header>
         <main>
-            <section>
+            <section class='tasks'>
                 <h2>Tasks</h2>
                 {% if tasks %}
                 {% for task in tasks %}
                 <ul>
-                    <li><h3>{{task.title}}</h3><p>{{task.text}}</p></li>
+                    <li><h3>{{task.title}}</h3><p>{{task.text}}</p><a href='{% url "todo:delete" task.id %}'>X</a></li>
                 </ul>
                 {% endfor %}
                 {% else %}
@@ -26,7 +26,7 @@
                 {% endif %}
             </section>
 
-            <section>
+            <section class='create'>
                 <form action='{% url "todo:index" %}' method='POST'>
                     {% csrf_token %}
                     <label for='title'>Title:</label>
