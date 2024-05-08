@@ -4,6 +4,6 @@ from . import views
 
 app_name = 'todo'
 
-urlpatterns = {
+urlpatterns = [ 
     path('', views.index, name='index')
-}
+]
