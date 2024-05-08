@@ -1,0 +1,11 @@
+/* Style reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* General */
+body {
+    background-color: lightblue;
+    color: black;
+}
