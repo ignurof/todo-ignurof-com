@@ -10,8 +10,13 @@ class TaskService():
         task.save()
 
     def delete_task(self, id):
-        task = Task.objects.get(id=id)
-        task.delete()
+        try:
+            task = Task.objects.get(id=id)
+        except(ObjectDoesNotExist):
+            return False
+        else:
+            task.delete()
+            return True
 
     def order_by_descending(self):
         return Task.objects.order_by('-id')

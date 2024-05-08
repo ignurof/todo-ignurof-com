@@ -13,6 +13,9 @@
             <h1>Todo App</h1>
         </header>
         <main>
+            {% if msg %}
+            <h4>{{msg}}</h4>
+            {% endif %}
             <section class='tasks'>
                 <h2>Tasks</h2>
                 {% if tasks %}

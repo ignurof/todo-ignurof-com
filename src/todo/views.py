@@ -31,5 +31,9 @@ def post(request):
 
 
 def delete(request, id):
-    TaskService().delete_task(id)
-    return HttpResponseRedirect(reverse('todo:index'))
+    if TaskService().delete_task(id):
+        context = { 'msg': 'Deleted task(%i)' % id } 
+    else:
+        context = { 'msg': 'Task not found!' } 
+
+    return render(request, 'todo/index.html', context)
