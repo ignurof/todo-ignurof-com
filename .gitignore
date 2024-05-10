@@ -1,4 +1,3 @@
-
 # Python # 
 *.py[cod] 
 *$py.class
@@ -14,3 +13,6 @@ media
 
 # Backup files # 
 *.bak 
+
+# LSP
+pyrightconfig.json
