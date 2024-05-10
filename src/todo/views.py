@@ -25,15 +25,17 @@ def post(request):
         return HttpResponse('invalid post', status=400)
     else:
         if title != '' and text != '':
-            TaskService().create_task(title, text)
+            TaskService().create(title, text)
 
         return HttpResponseRedirect(reverse('todo:index'))
 
 
 def delete(request, id):
-    if TaskService().delete_task(id):
-        context = { 'msg': 'Deleted task(%i)' % id } 
+    if TaskService().delete(id):
+        context = { 'msg': 'Deleted task(%i)' % id }
     else:
         context = { 'msg': 'Task not found!' } 
+
+    # lägg msg/notif i session
 
     return render(request, 'todo/index.html', context)
