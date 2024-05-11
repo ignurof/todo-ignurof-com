@@ -23,5 +23,8 @@ class TaskService():
             task.delete()
             return True
 
+    def get_last_by_id(self):
+        return Task.objects.latest('id').id
+
     def order_by_descending(self):
         return Task.objects.order_by('-id')
