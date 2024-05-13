@@ -22,15 +22,13 @@ def get(request):
 
 def post(request):
     try:
-        title = request.POST["title"]
-        text = request.POST["text"]
+        [title, text] = [request.POST["title"], request.POST["text"]]
     except KeyError:
         return HttpResponse("invalid post", status=400)
     else:
-        if title != "" and text != "":
-            TaskService().create(title, text)
+        request.session["message"] = TaskService().create(title, text)
 
-        return HttpResponseRedirect(reverse("todo:index"))
+    return HttpResponseRedirect(reverse("todo:index"))
 
 
 def delete(request, id):
