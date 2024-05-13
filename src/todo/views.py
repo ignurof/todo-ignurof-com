@@ -34,4 +34,12 @@ def post(request):
 def delete(request, id):
     request.session["message"] = TaskService().delete(id)["message"]
 
-    return render(request, "todo/index.html")
+    return HttpResponseRedirect(reverse("todo:index"))
+
+
+def put(request, id):
+    title = "title"
+    text = "text"
+    request.session["message"] = TaskService().edit(id, title, text)["message"]
+
+    return HttpResponseRedirect(reverse("todo:index"))
