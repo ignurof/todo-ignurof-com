@@ -8,12 +8,19 @@ class TestTaskService(TestCase):
 
     def test_create(self):
         created_task = self.create_test_task()
-        self.assertEqual(created_task['error_code'], 0)
+        self.assertEqual(created_task["error_code"], 0)
 
     def test_delete(self):
         self.create_test_task()
         deleted_task = TaskService().delete(TaskService().get_last_by_id())
         self.assertEqual(deleted_task["error_code"], 0)
+
+    def test_edit(self):
+        self.create_test_task()
+        edited_task = TaskService().edit(
+            TaskService().get_last_by_id(), "title", "text"
+        )
+        self.assertEqual(edited_task["error_code"], 0)
 
     def test_get_last_by_id(self):
         self.create_test_task()
