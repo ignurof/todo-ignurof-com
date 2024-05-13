@@ -10,9 +10,9 @@ class TaskService:
             task = Task(title=title, text=text)
             task.save()
         except:
-            return False
+            return {"error_code": 1, "message": "Failed to Create Task"}
         else:
-            return True
+            return {"error_code": 0, "message": "Created Task(%i)" % task.id}
 
     def delete(self, id):
         try:
