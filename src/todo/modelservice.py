@@ -1,9 +1,9 @@
 from .models import Task
 
 
-class TaskService():
+class TaskService:
     def __str__(self):
-        return 'TaskService'
+        return "TaskService"
 
     def create(self, title, text):
         try:
@@ -18,13 +18,13 @@ class TaskService():
         try:
             task = Task.objects.get(id=id)
         except Task.DoesNotExist:
-            return False
+            return {"error_code": 1, "message": "Task not found"}
         else:
             task.delete()
-            return True
+            return {"error_code": 0, "message": "Deleted Task(%i)" % id}
 
     def get_last_by_id(self):
-        return Task.objects.latest('id').id
+        return Task.objects.latest("id").id
 
     def order_by_descending(self):
-        return Task.objects.order_by('-id')
+        return Task.objects.order_by("-id")

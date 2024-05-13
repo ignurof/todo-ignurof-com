@@ -4,14 +4,15 @@ from .modelservice import TaskService
 
 class TestTaskService(TestCase):
     def create_test_task(self):
-        return TaskService().create('title', 'text')
+        return TaskService().create("title", "text")
 
     def test_create(self):
         self.assertEqual(self.create_test_task(), True)
 
     def test_delete(self):
         self.create_test_task()
-        self.assertEqual(TaskService().delete(TaskService().get_last_by_id()), True)
+        deleted_task = TaskService().delete(TaskService().get_last_by_id())
+        self.assertEqual(deleted_task["error_code"], 0)
 
     def test_get_last_by_id(self):
         self.create_test_task()
